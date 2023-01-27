@@ -6,7 +6,7 @@
       <h1>Modifica Progetto</h1>
       @include('partials.errors')
       <div class="mt-4">
-        <form action="{{ route('admin.projects.update', $project) }}" method="POST">
+        <form action="{{ route('admin.projects.update', $project) }}" method="POST" enctype="multipart/form-data">
           @csrf
           @method('PUT')
           <div class="mb-3">
@@ -23,6 +23,11 @@
             <label for="description" class="form-label">Descrizione</label>
             <textarea class="form-control" id="description" name="description" rows="10"
               placeholder="Inserisci la descrizione">{{ old('description', $project->description) }}</textarea>
+          </div>
+          <div class="mb-3">
+            <label for="cover_image" class="form-label">Immagine</label>
+            <input type="file" class="form-control" id="cover_image" name="cover_image"
+              value="{{ old('cover_image') }}">
           </div>
           <button type="submit" class="btn btn-primary">Modifica</button>
         </form>
